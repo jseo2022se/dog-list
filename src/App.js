@@ -1,21 +1,22 @@
 import './App.css';
-import ShowDog from './components/DogPicture';
-
-import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-
 import Navbar from './components/NavBar';
 import HomePage from './pages/HomePage';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Favorites from './pages/Favorites';
 
 function App() {
 
   let [dog, setDog] = useState(null);
+  let [favorites, setFavorite] = useState([]);
+
+  let navigate = useNavigate()
 
   const getDogs = async () => {
 
     try {
       const response = await fetch(
-        `https://dog.ceo/api/breeds/image/random Fetch!`
+        `https://dog.ceo/api/breed/hound/images/random`
       );
       const data = await response.json();
       setDog(data)
@@ -25,6 +26,15 @@ function App() {
     }
   }
 
+  const addToFavorites = (dog) => {
+    setFavorite([...favorites, dog]);
+    navigate("/favorites")
+  }
+
+  useEffect(() => {
+    getDogs()
+  }, [])
+
   return (
     <div className="App">
       <Navbar />
@@ -32,11 +42,17 @@ function App() {
         <Route
           path="/"
           element={
-            <HomePage
-              
+            <HomePage 
+              dog={dog}
+              getDogs={getDogs}
+            />    
           }
+          />
+          <Route
+            path='/favorites'
+            element={<Favorites />}
+          />
       </Routes>
-      <ShowDog />
     </div>
   );
 }
