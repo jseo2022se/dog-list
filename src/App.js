@@ -1,9 +1,39 @@
 import './App.css';
 
+import { Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import Navbar from './components/NavBar';
+import HomePage from './pages/HomePage';
+
 function App() {
+
+  let [dog, setDog] = useState(null);
+
+  const getDogs = async () => {
+
+    try {
+      const response = await fetch(
+        `https://dog.ceo/api/breeds/image/random Fetch!`
+      );
+      const data = await response.json();
+      setDog(data)
+    } catch (err) {
+      console.log("Error! No dog fetched :(.")
+      console.log(err);
+    }
+  }
+
   return (
     <div className="App">
-      Hello World!
+      Hello
+      <Navbar />
+      <Routes>
+        <Route
+          path='/'
+          element={<HomePage getDogs={getDogs} />}
+          />
+      </Routes>
     </div>
   );
 }
