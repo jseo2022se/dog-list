@@ -7,12 +7,6 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/NavBar';
 import HomePage from './pages/HomePage';
 
-import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-
-import Navbar from './components/NavBar';
-import HomePage from './pages/HomePage';
-
 function App() {
 
   let [dog, setDog] = useState(null);
