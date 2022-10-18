@@ -1,4 +1,11 @@
 import './App.css';
+import ShowDog from './components/DogPicture';
+
+import { Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import Navbar from './components/NavBar';
+import HomePage from './pages/HomePage';
 
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -26,14 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      Hello
-      <Navbar />
-      <Routes>
-        <Route
-          path='/'
-          element={<HomePage getDogs={getDogs} />}
-          />
-      </Routes>
+      <ShowDog />
     </div>
   );
 }
