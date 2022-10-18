@@ -4,7 +4,7 @@ import ShowDog from './components/DogPicture';
 function App() {
   return (
     <div className="App">
-      <ShowDog />
+      <ShowDog breed="beagle" />
     </div>
   );
 }
